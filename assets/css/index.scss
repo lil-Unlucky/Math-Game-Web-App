@@ -1,0 +1,308 @@
+// ------ GOOGLE FONTS ------
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+// ------ STYLES RESET -------
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poetsen One", monospace, sans-serif;
+}
+
+$body-bg-color: #343434;
+$body-w: 100%;
+$body-h: 100vh;
+$header-bg-color: #242424;
+$header-h: 75px;
+
+$main-game-window-mt: 100px;
+$main-game-window-w: 500px;
+$main-game-window-h: 350px;
+$main-game-window-bg-color: #505050;
+
+body {
+    width: $body-w;
+    height: $body-h;
+    background: $body-bg-color;
+    overflow-x: hidden;
+}
+
+header {
+    background: $header-bg-color;
+    height: $header-h;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .header-wrapper {
+        a {
+            text-decoration: none;
+            
+            h1 {
+                color: #9f9f9f;
+                user-select: none;
+                transition: all .25s linear;
+                padding: 4px 8px;
+                &:hover {
+                    color: #333;
+                    box-shadow: 1px 1px 5px 5px #ebd230;
+                    background: #fff;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+}
+
+@mixin main-game-window-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.main-game-window {
+    margin: 0 auto;
+    margin-top: $main-game-window-mt;
+    background: $main-game-window-bg-color;
+    width: $main-game-window-w;
+    height: $main-game-window-h;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+
+    .difficult-selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 10px;
+        left: 10px;
+        position: absolute;
+        
+        span {
+            user-select: none;
+            color: #e3e3e3;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        #diff {
+            border-radius: 4px;
+            padding: 4px 6px;
+            text-align: center;
+            width: 100px;
+            border-radius: 6px;
+            background-color: #fff;
+            outline: 1px solid #b72c2c;
+
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+        label[for='diff'] {
+            position: absolute;
+            text-align: center;
+            right: 6px;
+            top: 0;
+            font-size: 20px;
+            pointer-events: none;
+        }
+    }
+
+    .display,
+    .user-inputs {
+        width: 100%;
+        position: relative;
+
+        .text {
+            position: absolute;
+            top: 55px;
+        }
+    }
+
+    .display {
+        display: flex;
+        justify-content: center;
+        .block-container {
+            @include main-game-window-inner();
+            width: 60%;
+            height: 50px;
+            background: rgba(150, 150, 150, .5);
+            align-items: center;
+            border-radius: 6px;
+            color: #fff;
+            gap: 15px;
+            font-size: 24px;
+            user-select: none;
+            position: relative;
+        }
+
+        .change-math-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 10px;
+            top: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            background: rgba(0, 0, 0, .9);
+            position: absolute;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color .2s linear;
+
+            &:hover {
+                background: rgba(0, 0, 0, .65);
+            }
+        }
+    }
+    .user-inputs {
+        @include main-game-window-inner();
+
+        .answer-text-input {
+            border: none;
+            outline: none;
+            padding: 2px 4px;
+            width: 50%;
+            height: 50px;
+            border-radius: 4px 0 0 4px;
+        }
+        .enter-answer-button {
+            border: none;
+            width: 65px;
+            cursor: pointer;
+            background-color: #3bcf3b;
+            border-radius: 0 4px 4px 0;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                color: #fff;
+                background-color: #2be72b;
+                box-shadow: 2px 2px 10px 10px #3bcf3b;
+            }
+        }
+    }
+
+    .show-stats {
+        user-select: none;
+        position: absolute;
+        bottom: 15px;
+        align-self: center;
+        padding: 2px 4px;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:active {
+            background-color: #f5f5f5;
+        }
+    }
+}
+
+@keyframes showGameStats {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 150px;
+    }
+}
+@keyframes hideGameStats {
+    0%{
+        display: grid;
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+}
+
+.game-stats-info {
+    animation-name: hideGameStats;
+    animation-duration: .65s;
+    animation-fill-mode: forwards;
+    margin: 0 auto;
+    display: none;
+    background: #242424;
+    overflow: hidden;
+    width: $main-game-window-w;
+    border-radius: 0 0 4px 4px;
+    user-select: none;
+    color: #fff;
+    place-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    height: 150px;
+
+    .stat-title {
+        .sub-stat-title {
+            font-size: 18px;
+            border-bottom: 2px dashed #f5f5f5;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        p {
+            margin-top: 5px;
+
+            span.answ {
+                margin-left: 15px;
+            }
+        }
+    }
+}
+.game-stats-info.active {
+    display: grid;
+    animation-name: showGameStats;
+    animation-duration: .65s;
+    animation-fill-mode: forwards;
+}
+
+.miniTab {
+    position: absolute;
+    right: 0;
+    bottom: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    width: 150px;
+    height: 30px;
+    border-radius: 4px 0 0 4px;
+
+    .firstSym {
+        margin-left: 15px;
+    }
+    .innerText {
+        margin-right: 15px;
+    }
+}
+.correctAnswTab {
+    background-color: #3c3c;
+}
+.wrongAnswTab {
+    background-color: #a42626;
+}
+.skipAnswTab {
+    background-color: rgba(82, 82, 82, .65);
+}
+
+@keyframes hideTab {
+    0% {
+        opacity: 100%;
+        right: 50px;
+    }
+    100% {
+        opacity: 0;
+        right: -150px;
+    }
+}
+
+.miniTab {
+    animation-name: hideTab;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    color: #fff;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Math Game App | Unlucky</title>
+
+        <!-- FAVICON -->
+        <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+
+        <!-- CUSTOM STYLES -->
+        <link rel="stylesheet" href="assets/css/index.css">
+
+        <!-- REMIX-ICON -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+
+    <body>
+
+        <div class="math-game-app">
+
+            <header>
+                <div class="header-wrapper">
+                    <a href="https://github.com/lil-Unlucky" target="_blank"><h1>Math Game | Unlucky</h1></a>
+                </div>
+            </header>
+    
+            <main class="main">
+
+                <div class="main-game-window">
+                    
+                    <div class="difficult-selector">
+                        <span>Difficult:</span>
+                        <select name="difficult-selector" id="diff">
+                            <option class="diff-option" value="Easy">Easy</option>
+                            <option class="diff-option" value="Medium">Medium</option>
+                            <option class="diff-option" value="Hard">Hard</option>
+                        </select>
+                        <label for="diff"><i class="ri-corner-right-down-line"></i></label>
+                    </div>
+
+                    <div class="display">
+                        
+                        <div class="change-math-btn"><i class="ri-refresh-line"></i></div>
+
+
+                        <div class="block-container">
+                            <div class="firstNumBlock"><span class="firstNum"></span></div>
+                            <div class="mathOperatorBlock"><span class="mathOperator"></span></div>
+                            <div class="secondNumBlock"><span class="secondNum"></span></div>
+                        </div>
+
+                    </div>
+
+                    <div class="user-inputs">
+                        <input class="answer-text-input" type="text" placeholder="Enter your answer...">
+
+                        <button class="enter-answer-button" type="submit">Answer</button>
+
+                        <div class="text" style="color: red; font-style: italic; display: none; font-size: 14px; user-select: none;">Поле должно быть заполнено!</div>
+                    </div>
+
+                    <div class="show-stats"><span>Show stats</span></div>
+
+                </div>
+
+                <div class="game-stats-info">
+                    <div class="global-stats stat-title">
+                        <span class="sub-stat-title">Глобальная статистика</span>
+                        <p>Всего примеров: <span class="everyAnsw answ global"></span></p>
+                        <p>Пропущено: <span class="skipedAnsw answ global"></span></p>
+                        <p>+<span class="correctAnsw answ global"></span></p>
+                        <p>-<span class="wrongAnsw answ global"></span></p>
+                    </div>
+                    <div class="session-stats stat-title">
+                        <span class="sub-stat-title">Статистика текущей сессии</span>
+                        <p>Всего примеров: <span class="sessionEveryAnsw"></span></p>
+                        <p>Пропущено: <span class="sessionSkipedAnsw"></span></p>
+                        <p>+<span class="sessionCorrectAnsw"></span></p>
+                        <p>-<span class="sessionWrongAnsw"></span></p>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+        
+
+        <script src="assets/js/index.js"></script>
+    </body>
+
+</html>
